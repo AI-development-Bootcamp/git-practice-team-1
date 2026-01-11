@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -40,6 +41,10 @@ export const todoService = {
       filtered = filtered.filter(todo => todo.priority === filters.priority);
     }
 
+    if (filters.theme) {
+      filtered = filtered.filter(todo => todo.theme === filters.theme);
+    }
+
     if (filters.search) {
       const searchLower = filters.search.toLowerCase();
       filtered = filtered.filter(todo =>
@@ -53,23 +58,20 @@ export const todoService = {
 
   getById(id) {
     const todos = readTodos();
-    const numericId = Number(id);
-    return todos.find(todo => todo.id === numericId);
+    return todos.find(todo => todo.id === id);
   },
 
   create(todoData) {
     const todos = readTodos();
-    // Find the maximum ID and add 1
-    const maxId = todos.length > 0
-      ? Math.max(...todos.map(todo => Number(todo.id) || 0))
-      : 0;
 
     const newTodo = {
-      id: maxId + 1,
+      id: crypto.randomUUID(),
       title: todoData.title,
       description: todoData.description,
       status: todoData.status || 'todo',
       priority: todoData.priority || 'medium',
+      theme: todoData.theme || 'other',
+      dueDate: todoData.dueDate || null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
@@ -80,8 +82,7 @@ export const todoService = {
 
   update(id, updates) {
     const todos = readTodos();
-    const numericId = Number(id);
-    const index = todos.findIndex(todo => todo.id === numericId);
+    const index = todos.findIndex(todo => todo.id === id);
     if (index === -1) return null;
 
     todos[index] = {
@@ -95,8 +96,7 @@ export const todoService = {
 
   delete(id) {
     const todos = readTodos();
-    const numericId = Number(id);
-    const index = todos.findIndex(todo => todo.id === numericId);
+    const index = todos.findIndex(todo => todo.id === id);
     if (index === -1) return false;
 
     todos.splice(index, 1);

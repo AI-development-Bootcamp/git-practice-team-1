@@ -16,3 +16,20 @@ export async function createTestApp() {
 
   return fastify;
 }
+
+/**
+ * Helper function to inject a request and parse the JSON response
+ * Reduces boilerplate code in tests by combining inject + JSON.parse
+ *
+ * @param {Fastify} app - Fastify app instance
+ * @param {object} options - Request options for app.inject()
+ * @returns {Promise<{statusCode: number, payload: any, headers: object}>}
+ */
+export async function injectAndParse(app, options) {
+  const response = await app.inject(options);
+  return {
+    statusCode: response.statusCode,
+    payload: response.payload ? JSON.parse(response.payload) : null,
+    headers: response.headers
+  };
+}
