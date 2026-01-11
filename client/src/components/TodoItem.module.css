@@ -70,3 +70,30 @@
 .deleteBtn:hover {
     transform: scale(1.1);
 }
+
+/* === PRIORITY BADGE === */
+.priorityBadge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.priorityLow {
+    background-color: #22c55e;
+    color: white;
+}
+
+.priorityMedium {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.priorityHigh {
+    background-color: #ef4444;
+    color: white;
+}
