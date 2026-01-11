@@ -1,10 +1,11 @@
 import React from 'react';
 import TodoItem from './TodoItem';
+import styles from './TodoList.module.css';
 
 function TodoList({ todos, onToggle, onDelete }) {
   if (todos.length === 0) {
     return (
-      <div className="empty-state">
+      <div className={styles.emptyState}>
         <p>No todos yet. Add one above!</p>
       </div>
     );
@@ -14,9 +15,9 @@ function TodoList({ todos, onToggle, onDelete }) {
   const doneTodos = todos.filter(t => t.status === 'done');
 
   return (
-    <div className="todo-list">
+    <div className={styles.todoList}>
       {pendingTodos.length > 0 && (
-        <section className="todo-section">
+        <section className={styles.todoSection}>
           <h2>To Do ({pendingTodos.length})</h2>
           {pendingTodos.map(todo => (
             <TodoItem
@@ -30,7 +31,7 @@ function TodoList({ todos, onToggle, onDelete }) {
       )}
 
       {doneTodos.length > 0 && (
-        <section className="todo-section">
+        <section className={styles.todoSection}>
           <h2>Done ({doneTodos.length})</h2>
           {doneTodos.map(todo => (
             <TodoItem
@@ -47,3 +48,4 @@ function TodoList({ todos, onToggle, onDelete }) {
 }
 
 export default TodoList;
+

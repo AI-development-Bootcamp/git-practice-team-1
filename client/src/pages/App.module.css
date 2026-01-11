@@ -1,0 +1,52 @@
+/* === APP LAYOUT === */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: #4361ee;
+  color: white;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.main {
+  flex: 1;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* === STATES === */
+.loading {
+  text-align: center;
+  padding: 48px;
+  color: #666;
+}
+
+.errorMessage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #fef2f2;
+  color: #dc2626;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.errorMessage button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}

@@ -1,0 +1,23 @@
+/* === TODO LIST === */
+.todoList {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.todoSection h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.emptyState {
+    text-align: center;
+    padding: 48px;
+    color: #888;
+}

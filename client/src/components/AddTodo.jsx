@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './AddTodo.module.css';
 
 function AddTodo({ onAdd }) {
   const [title, setTitle] = useState('');
@@ -12,15 +13,15 @@ function AddTodo({ onAdd }) {
   };
 
   return (
-    <form className="add-todo" onSubmit={handleSubmit}>
+    <form className={styles.addTodo} onSubmit={handleSubmit}>
       <input
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="What needs to be done?"
-        className="add-input"
+        className={styles.addInput}
       />
-      <button type="submit" className="add-btn" disabled={!title.trim()}>
+      <button type="submit" className={styles.addBtn} disabled={!title.trim()}>
         Add
       </button>
     </form>
@@ -28,3 +29,4 @@ function AddTodo({ onAdd }) {
 }
 
 export default AddTodo;
+

@@ -1,0 +1,41 @@
+/* === ADD TODO === */
+.addTodo {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.addInput {
+    flex: 1;
+    padding: 14px 18px;
+    font-size: 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.addInput:focus {
+    border-color: #4361ee;
+}
+
+.addBtn {
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    background: #4361ee;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.addBtn:hover:not(:disabled) {
+    background: #3651d4;
+}
+
+.addBtn:disabled {
+    background: #a0a0a0;
+    cursor: not-allowed;
+}
