@@ -2,6 +2,13 @@ import { todoService } from '../services/todoService.js';
 
 export default async function todosRoutes(fastify, options) {
 
+  // GET /api/todos/search - Query todos with filters
+  // Supports: id, title, status, createdAfter, createdBefore, updatedAfter, updatedBefore
+  fastify.get('/search', async (request, reply) => {
+    const result = todoService.query(request.query);
+    return result;
+  });
+
   // GET /api/todos - Get all todos
   fastify.get('/', async (request, reply) => {
     return todoService.getAll();
