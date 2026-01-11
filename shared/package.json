@@ -1,0 +1,14 @@
+{
+  "name": "todo-shared",
+  "version": "1.0.0",
+  "description": "Shared types and DTOs for Todo Manager",
+  "type": "module",
+  "main": "types/todo.dto.js",
+  "exports": {
+    "./types/todo": "./types/todo.dto.js",
+    "./types/validation": "./types/validation.js"
+  },
+  "dependencies": {
+    "zod": "^4.3.5"
+  }
+}
