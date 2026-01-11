@@ -10,7 +10,7 @@ export const TodoStatusEnum = z.enum(['todo', 'in-progress', 'done']);
  * Todo Priority Enum
  * Represents the priority level of a todo item
  */
-export const TodoPriorityEnum = z.enum(['low', 'medium', 'high', 'urgent']);
+export const TodoPriorityEnum = z.enum(['low', 'medium', 'high']);
 
 /**
  * Todo Theme/Category Enum

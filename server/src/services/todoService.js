@@ -9,7 +9,13 @@ const DATA_FILE = join(__dirname, '../data/todos.json');
 function readTodos() {
   try {
     const data = readFileSync(DATA_FILE, 'utf-8');
-    return JSON.parse(data);
+    const todos = JSON.parse(data);
+
+    // Migrate: ensure all todos have priority field
+    return todos.map(todo => ({
+      ...todo,
+      priority: todo.priority || 'medium'
+    }));
   } catch (error) {
     return [];
   }
@@ -20,8 +26,29 @@ function writeTodos(todos) {
 }
 
 export const todoService = {
-  getAll() {
-    return readTodos();
+  getAll(filters = {}) {
+    const todos = readTodos();
+
+    // Apply filters if provided
+    let filtered = todos;
+
+    if (filters.status) {
+      filtered = filtered.filter(todo => todo.status === filters.status);
+    }
+
+    if (filters.priority) {
+      filtered = filtered.filter(todo => todo.priority === filters.priority);
+    }
+
+    if (filters.search) {
+      const searchLower = filters.search.toLowerCase();
+      filtered = filtered.filter(todo =>
+        todo.title.toLowerCase().includes(searchLower) ||
+        (todo.description && todo.description.toLowerCase().includes(searchLower))
+      );
+    }
+
+    return filtered;
   },
 
   getById(id) {
@@ -34,7 +61,9 @@ export const todoService = {
     const newTodo = {
       id: crypto.randomUUID(),
       title: todoData.title,
-      status: 'todo',
+      description: todoData.description,
+      status: todoData.status || 'todo',
+      priority: todoData.priority || 'medium',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
