@@ -53,13 +53,19 @@ export const todoService = {
 
   getById(id) {
     const todos = readTodos();
-    return todos.find(todo => todo.id === id);
+    const numericId = Number(id);
+    return todos.find(todo => todo.id === numericId);
   },
 
   create(todoData) {
     const todos = readTodos();
+    // Find the maximum ID and add 1
+    const maxId = todos.length > 0
+      ? Math.max(...todos.map(todo => Number(todo.id) || 0))
+      : 0;
+
     const newTodo = {
-      id: crypto.randomUUID(),
+      id: maxId + 1,
       title: todoData.title,
       description: todoData.description,
       status: todoData.status || 'todo',
@@ -74,7 +80,8 @@ export const todoService = {
 
   update(id, updates) {
     const todos = readTodos();
-    const index = todos.findIndex(todo => todo.id === id);
+    const numericId = Number(id);
+    const index = todos.findIndex(todo => todo.id === numericId);
     if (index === -1) return null;
 
     todos[index] = {
@@ -88,7 +95,8 @@ export const todoService = {
 
   delete(id) {
     const todos = readTodos();
-    const index = todos.findIndex(todo => todo.id === id);
+    const numericId = Number(id);
+    const index = todos.findIndex(todo => todo.id === numericId);
     if (index === -1) return false;
 
     todos.splice(index, 1);
