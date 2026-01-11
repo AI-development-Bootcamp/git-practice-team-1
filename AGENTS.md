@@ -16,3 +16,7 @@ Use `@/openspec/AGENTS.md` to learn:
 Keep this managed block so 'openspec update' can refresh the instructions.
 
 <!-- OPENSPEC:END -->
+
+## 📚 Project Documentation
+
+- **Backend Rules:** [`server/AGENTS.MD`](server/AGENTS.MD) - **MUST READ** for any backend work.
