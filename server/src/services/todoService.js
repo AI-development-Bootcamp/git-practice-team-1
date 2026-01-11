@@ -53,8 +53,7 @@ export const todoService = {
 
   getById(id) {
     const todos = readTodos();
-    const numericId = Number(id);
-    return todos.find(todo => todo.id === numericId);
+    return todos.find(todo => todo.id === id);
   },
 
   create(todoData) {
@@ -65,7 +64,7 @@ export const todoService = {
       : 0;
 
     const newTodo = {
-      id: maxId + 1,
+      id: crypto.randomUUID(),
       title: todoData.title,
       description: todoData.description,
       status: todoData.status || 'todo',
