@@ -20,7 +20,7 @@ function App() {
         try {
             setLoading(true);
             const data = await api.todos.getAll();
-            setTodos(data);
+            setTodos(Array.isArray(data) ? data : []);
             setError(null);
         } catch (err) {
             setError(err.message);

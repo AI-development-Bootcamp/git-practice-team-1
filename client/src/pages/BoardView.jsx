@@ -34,7 +34,9 @@ function BoardView({ todos, loading, error, onDismissError, onDelete, onStatusCh
       } catch (e) {
         if (!cancelled) {
           setStatuses(FALLBACK_STATUSES);
-          setStatusesError(e?.message || 'Failed to load statuses');
+          setStatusesError(
+            `Statuses endpoint unavailable. ${e?.message || 'Failed to load statuses'} Using default statuses.`
+          );
         }
       } finally {
         if (!cancelled) setStatusesLoading(false);
