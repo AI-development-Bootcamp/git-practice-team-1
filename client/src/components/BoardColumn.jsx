@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './BoardColumn.module.css';
+import { useDroppable } from '@dnd-kit/core';
 
 function BoardColumn({
   status,
@@ -10,6 +11,8 @@ function BoardColumn({
   className = '',
   ...props
 }) {
+  const { setNodeRef, isOver } = useDroppable({ id: String(status) });
+
   return (
     <section className={`${styles.column} ${className}`} {...props}>
       <header className={styles.header}>
@@ -18,7 +21,11 @@ function BoardColumn({
         </h2>
       </header>
 
-      <div className={styles.body} data-status={status}>
+      <div
+        ref={setNodeRef}
+        className={`${styles.body} ${isOver ? styles.over : ''}`}
+        data-status={status}
+      >
         {count === 0 ? (
           <div className={styles.empty}>{emptyMessage}</div>
         ) : (

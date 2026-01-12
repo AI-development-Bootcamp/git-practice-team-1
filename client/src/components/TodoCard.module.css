@@ -10,6 +10,7 @@
   transition: box-shadow 0.2s, transform 0.2s;
   cursor: grab;
   user-select: none;
+  touch-action: none;
 }
 
 /* Status backgrounds */
@@ -35,6 +36,11 @@
 
 .card:active {
   cursor: grabbing;
+}
+
+.dragging {
+  opacity: 0.55;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .done {

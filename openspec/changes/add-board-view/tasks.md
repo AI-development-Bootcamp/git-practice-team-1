@@ -18,12 +18,12 @@
 - [ ] 3.3 Test API service methods with backend endpoints
 
 ## 4. Drag-and-Drop Functionality
-- [ ] 4.1 Set up DndContext in Board component
-- [ ] 4.2 Wrap TodoCard with useDraggable hook from @dnd-kit
-- [ ] 4.3 Configure BoardColumn as droppable with useDroppable hook
-- [ ] 4.4 Implement onDragEnd handler to update todo status
-- [ ] 4.5 Add DragOverlay for visual feedback during drag
-- [ ] 4.6 Style drag states with CSS modules
+- [x] 4.1 Set up DndContext in Board component
+- [x] 4.2 Wrap TodoCard with useDraggable hook from @dnd-kit
+- [x] 4.3 Configure BoardColumn as droppable with useDroppable hook
+- [x] 4.4 Implement onDragEnd handler to update todo status
+- [x] 4.5 Add DragOverlay for visual feedback during drag
+- [x] 4.6 Style drag states with CSS modules
 
 ## 5. Board View Page
 - [ ] 5.1 Create BoardView page component with CSS module (BoardView.module.css)
