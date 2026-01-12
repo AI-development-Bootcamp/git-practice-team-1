@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { DEFAULT_STATUS } from '../constants/statuses.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,7 +35,7 @@ export const todoService = {
     const newTodo = {
       id: crypto.randomUUID(),
       title: todoData.title,
-      status: 'todo',
+      status: DEFAULT_STATUS,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
