@@ -2,19 +2,19 @@ import { todoService } from '../services/todoService.js';
 
 export default async function todosRoutes(fastify, options) {
 
-  // GET /api/todos/search - Query todos with filters
+  // GET /api/tasks/search - Query tasks with filters
   // Supports: id, title, status, createdAfter, createdBefore, updatedAfter, updatedBefore
   fastify.get('/search', async (request, reply) => {
     const result = todoService.query(request.query);
     return result;
   });
 
-  // GET /api/todos - Get all todos
+  // GET /api/tasks - Get all todos
   fastify.get('/', async (request, reply) => {
     return todoService.getAll();
   });
 
-  // GET /api/todos/:id - Get single todo
+  // GET /api/tasks/:id - Get single todo
   fastify.get('/:id', async (request, reply) => {
     const todo = todoService.getById(request.params.id);
     if (!todo) {
@@ -23,7 +23,7 @@ export default async function todosRoutes(fastify, options) {
     return todo;
   });
 
-  // POST /api/todos - Create new todo
+  // POST /api/tasks - Create new todo
   fastify.post('/', async (request, reply) => {
     const { title } = request.body;
     if (!title || !title.trim()) {
@@ -33,7 +33,7 @@ export default async function todosRoutes(fastify, options) {
     return reply.status(201).send(todo);
   });
 
-  // PUT /api/todos/:id - Update todo
+  // PUT /api/tasks/:id - Update todo
   fastify.put('/:id', async (request, reply) => {
     const todo = todoService.update(request.params.id, request.body);
     if (!todo) {
@@ -42,7 +42,7 @@ export default async function todosRoutes(fastify, options) {
     return todo;
   });
 
-  // DELETE /api/todos/:id - Delete todo
+  // DELETE /api/tasks/:id - Delete todo
   fastify.delete('/:id', async (request, reply) => {
     const deleted = todoService.delete(request.params.id);
     if (!deleted) {
