@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { filterTodos } from '../utils/queryHelper.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,6 +23,16 @@ function writeTodos(todos) {
 export const todoService = {
   getAll() {
     return readTodos();
+  },
+
+  /**
+   * Query todos with filtering by all schema fields
+   * @param {Object} queryParams - Query parameters to filter by
+   * @returns {{ success: boolean, data: Array }}
+   */
+  query(queryParams) {
+    const todos = readTodos();
+    return filterTodos(todos, queryParams);
   },
 
   getById(id) {

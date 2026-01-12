@@ -8,7 +8,7 @@ await fastify.register(cors, {
   origin: 'http://localhost:5173'
 });
 
-await fastify.register(todosRoutes, { prefix: '/api/todos' });
+await fastify.register(todosRoutes, { prefix: '/api/tasks' });
 
 const start = async () => {
   try {
