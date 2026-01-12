@@ -14,7 +14,7 @@
 
 ## 3. API Service Updates
 - [x] 3.1 Add getStatuses() method to api.todos service
-- [ ] 3.2 Update getAll() method to support status query parameter
+- [x] 3.2 Update getAll() method to support status query parameter
 - [ ] 3.3 Test API service methods with backend endpoints
 
 ## 4. Drag-and-Drop Functionality
