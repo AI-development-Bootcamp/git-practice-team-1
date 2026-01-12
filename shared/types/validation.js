@@ -15,27 +15,23 @@ import { z } from 'zod';
  * @returns {ValidationResult} Validation result with success flag and data/errors
  */
 export const validateData = (schema, data) => {
-  try {
-    const validatedData = schema.parse(data);
+  const result = schema.safeParse(data);
+
+  if (result.success) {
     return {
       success: true,
-      data: validatedData,
-    };
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return {
-        success: false,
-        errors: error.errors.map(err => ({
-          path: err.path.join('.'),
-          message: err.message,
-        })),
-      };
-    }
-    return {
-      success: false,
-      errors: [{ path: 'unknown', message: error.message }],
+      data: result.data,
     };
   }
+
+  // Handle validation errors
+  return {
+    success: false,
+    errors: result.error.issues.map(err => ({
+      path: err.path.join('.'),
+      message: err.message,
+    })),
+  };
 };
 
 /**

@@ -70,3 +70,97 @@
 .deleteBtn:hover {
     transform: scale(1.1);
 }
+
+/* === PRIORITY BADGE & DROPDOWN === */
+.priorityWrapper {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.priorityBadge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+/* Hover pop-out effect */
+.priorityBadge:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.priorityLow {
+    background-color: #22c55e;
+    color: white;
+}
+
+.priorityMedium {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.priorityHigh {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Dropdown menu */
+.priorityDropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    min-width: 120px;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+/* Dropdown options */
+.priorityOption {
+    padding: 10px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+    background-color: white;
+    color: #333;
+}
+
+.optionBadge {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.optionLabel {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Hover effects with subtle tints */
+.priorityOption.priorityLow:hover {
+    background-color: rgba(34, 197, 94, 0.15);
+}
+
+.priorityOption.priorityMedium:hover {
+    background-color: rgba(245, 158, 11, 0.15);
+}
+
+.priorityOption.priorityHigh:hover {
+    background-color: rgba(239, 68, 68, 0.15);
+}
+
+/* Active/pressed state */
+.priorityOption:active {
+    transform: scale(0.98);
+}

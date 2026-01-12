@@ -4,27 +4,31 @@
     "title": "Learn Git basics",
     "status": "done",
     "createdAt": "2024-01-15T09:00:00.000Z",
-    "updatedAt": "2026-01-11T11:59:18.287Z"
+    "updatedAt": "2026-01-12T08:26:21.226Z",
+    "priority": "medium"
   },
   {
     "id": "2",
     "title": "Practice merge conflicts",
     "status": "todo",
     "createdAt": "2024-01-15T10:00:00.000Z",
-    "updatedAt": "2024-01-15T10:00:00.000Z"
+    "updatedAt": "2026-01-12T08:26:37.043Z",
+    "priority": "low"
   },
   {
     "id": "3",
     "title": "Build awesome features",
-    "status": "done",
+    "status": "todo",
     "createdAt": "2024-01-15T11:00:00.000Z",
-    "updatedAt": "2026-01-11T11:59:15.545Z"
+    "updatedAt": "2026-01-12T08:26:20.001Z",
+    "priority": "medium"
   },
   {
-    "id": "bcde0ee6-3bd6-46c0-b7cc-d7a422b8bc97",
-    "title": "hey\\",
+    "id": "bc1503a2-a924-468e-8af7-21288d2ec302",
+    "title": "add feature",
     "status": "todo",
-    "createdAt": "2026-01-11T13:03:07.400Z",
-    "updatedAt": "2026-01-11T13:03:07.400Z"
+    "priority": "high",
+    "createdAt": "2026-01-12T08:27:41.324Z",
+    "updatedAt": "2026-01-12T08:27:46.311Z"
   }
 ]

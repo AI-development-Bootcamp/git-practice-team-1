@@ -10,7 +10,7 @@ export const TodoStatusEnum = z.enum(['todo', 'in-progress', 'done']);
  * Todo Priority Enum
  * Represents the priority level of a todo item
  */
-export const TodoPriorityEnum = z.enum(['low', 'medium', 'high', 'urgent']);
+export const TodoPriorityEnum = z.enum(['low', 'medium', 'high']);
 
 /**
  * Todo Theme/Category Enum
@@ -67,7 +67,7 @@ export const CreateTodoSchema = z.object({
  * Used when updating an existing todo (all fields optional except id)
  */
 export const UpdateTodoSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string(),  // Changed from .uuid() to accept simple string IDs
   title: z.string()
     .min(1, 'Title is required')
     .max(200, 'Title must be less than 200 characters')
