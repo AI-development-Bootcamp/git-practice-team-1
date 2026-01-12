@@ -12,6 +12,23 @@
   user-select: none;
 }
 
+/* Status backgrounds */
+.statusTodo {
+  background: #f8fafc; /* slate-50 */
+}
+
+.statusInProgress {
+  background: #eff6ff; /* blue-50 */
+}
+
+.statusReview {
+  background: #fffbeb; /* amber-50 */
+}
+
+.statusDone {
+  background: #f0fdf4; /* green-50 */
+}
+
 .card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
