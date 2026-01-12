@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -53,8 +54,8 @@ export const todoService = {
 
   getById(id) {
     const todos = readTodos();
-    const numericId = Number(id);
-    return todos.find(todo => todo.id === numericId);
+    // Handle both string and number IDs by converting both to strings
+    return todos.find(todo => String(todo.id) === String(id));
   },
 
   create(todoData) {
@@ -65,7 +66,7 @@ export const todoService = {
       : 0;
 
     const newTodo = {
-      id: maxId + 1,
+      id: crypto.randomUUID(),
       title: todoData.title,
       description: todoData.description,
       status: todoData.status || 'todo',
@@ -80,8 +81,8 @@ export const todoService = {
 
   update(id, updates) {
     const todos = readTodos();
-    const numericId = Number(id);
-    const index = todos.findIndex(todo => todo.id === numericId);
+    // Handle both string and number IDs by converting both to strings
+    const index = todos.findIndex(todo => String(todo.id) === String(id));
     if (index === -1) return null;
 
     todos[index] = {
@@ -95,8 +96,8 @@ export const todoService = {
 
   delete(id) {
     const todos = readTodos();
-    const numericId = Number(id);
-    const index = todos.findIndex(todo => todo.id === numericId);
+    // Handle both string and number IDs by converting both to strings
+    const index = todos.findIndex(todo => String(todo.id) === String(id));
     if (index === -1) return false;
 
     todos.splice(index, 1);

@@ -23,9 +23,9 @@ export const api = {
 
     getById: (id) => fetchApi(`/todos/${id}`),
 
-    create: (title) => fetchApi('/todos', {
+    create: (todoData) => fetchApi('/todos', {
       method: 'POST',
-      body: JSON.stringify({ title }),
+      body: JSON.stringify(todoData),
     }),
 
     update: (id, updates) => fetchApi(`/todos/${id}`, {

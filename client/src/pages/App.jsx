@@ -26,9 +26,9 @@ function App() {
         }
     };
 
-    const handleAdd = async (title) => {
+    const handleAdd = async (todoData) => {
         try {
-            const newTodo = await api.todos.create(title);
+            const newTodo = await api.todos.create(todoData);
             setTodos([...todos, newTodo]);
         } catch (err) {
             setError(err.message);
@@ -50,6 +50,15 @@ function App() {
         try {
             await api.todos.delete(id);
             setTodos(todos.filter(t => t.id !== id));
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    const handlePriorityChange = async (id, priority) => {
+        try {
+            const updated = await api.todos.update(id, { priority });
+            setTodos(todos.map(t => t.id === id ? updated : t));
         } catch (err) {
             setError(err.message);
         }
@@ -78,6 +87,7 @@ function App() {
                         todos={todos}
                         onToggle={handleToggle}
                         onDelete={handleDelete}
+                        onPriorityChange={handlePriorityChange}
                     />
                 )}
             </main>

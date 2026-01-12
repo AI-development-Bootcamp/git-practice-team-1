@@ -40,7 +40,7 @@ export default async function todosRoutes(fastify, options) {
   // PUT /api/todos/:id - Update todo
   fastify.put('/:id', async (request, reply) => {
     const validation = validateData(UpdateTodoSchema, {
-      id: Number(request.params.id),
+      id: request.params.id,  // Keep as string
       ...request.body
     });
 
