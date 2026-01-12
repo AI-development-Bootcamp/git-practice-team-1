@@ -10,7 +10,7 @@
 - [x] 2.1 Create TodoCard component with CSS module (TodoCard.module.css)
 - [x] 2.2 Create BoardColumn component with CSS module (BoardColumn.module.css)
 - [x] 2.3 Create Board component with CSS module (Board.module.css)
-- [ ] 2.4 Ensure all components follow existing CSS module patterns
+- [x] 2.4 Ensure all components follow existing CSS module patterns
 
 ## 3. API Service Updates
 - [ ] 3.1 Add getStatuses() method to api.todos service
