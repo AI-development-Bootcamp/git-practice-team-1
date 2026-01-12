@@ -1,22 +1,12 @@
 import React from 'react';
 import styles from './TodoItem.module.css';
+import { buildStatusOptions, getStatusConfig } from '../utils/statusConfig';
 
-const STATUS_OPTIONS = [
-    { value: 'todo', label: 'To Do', icon: '○' },
-    { value: 'in-progress', label: 'In Progress', icon: '◐' },
-    { value: 'review', label: 'Review', icon: '◑' },
-    { value: 'done', label: 'Done', icon: '✓' }
-];
+function TodoItem({ todo, statuses, onStatusChange, onDelete }) {
+    const statusOptions = buildStatusOptions(statuses);
 
-function TodoItem({ todo, onStatusChange, onDelete }) {
     const getStatusColor = (status) => {
-        const colors = {
-            'todo': '#6b7280',
-            'in-progress': '#3b82f6',
-            'review': '#f59e0b',
-            'done': '#10b981'
-        };
-        return colors[status] || colors.todo;
+        return getStatusConfig(status).color;
     };
 
     return (
@@ -25,7 +15,7 @@ function TodoItem({ todo, onStatusChange, onDelete }) {
             style={{ borderLeft: `4px solid ${getStatusColor(todo.status)}` }}
         >
             <div className={styles.statusSelector}>
-                {STATUS_OPTIONS.map(option => (
+                {statusOptions.map(option => (
                     <button
                         key={option.value}
                         className={`${styles.statusBtn} ${todo.status === option.value ? styles.active : ''}`}

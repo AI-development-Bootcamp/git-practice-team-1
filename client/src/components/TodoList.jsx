@@ -1,15 +1,9 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 import styles from './TodoList.module.css';
+import { buildStatusConfig } from '../utils/statusConfig';
 
-const STATUS_CONFIG = {
-    todo: { label: 'To Do', color: '#6b7280' },
-    'in-progress': { label: 'In Progress', color: '#3b82f6' },
-    review: { label: 'Review', color: '#f59e0b' },
-    done: { label: 'Done', color: '#10b981' }
-};
-
-function TodoList({ todos, onStatusChange, onDelete }) {
+function TodoList({ todos, statuses, onStatusChange, onDelete }) {
   if (todos.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -18,11 +12,15 @@ function TodoList({ todos, onStatusChange, onDelete }) {
     );
   }
 
+  const statusConfig = buildStatusConfig(statuses);
+
   return (
     <div className={styles.todoList}>
-      {Object.entries(STATUS_CONFIG).map(([status, config]) => {
+      {statuses.map(status => {
         const statusTodos = todos.filter(t => t.status === status);
         if (statusTodos.length === 0) return null;
+
+        const config = statusConfig[status];
 
         return (
           <section key={status} className={styles.todoSection}>
@@ -33,7 +31,7 @@ function TodoList({ todos, onStatusChange, onDelete }) {
               <TodoItem
                 key={todo.id}
                 todo={todo}
-                currentStatus={status}
+                statuses={statuses}
                 onStatusChange={onStatusChange}
                 onDelete={onDelete}
               />

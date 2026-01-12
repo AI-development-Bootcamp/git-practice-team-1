@@ -19,22 +19,25 @@ async function fetchApi(endpoint, options = {}) {
 
 export const api = {
   todos: {
-    getAll: () => fetchApi('/todos'),
+    getAll: () => fetchApi('/tasks'),
 
-    getById: (id) => fetchApi(`/todos/${id}`),
+    getById: (id) => fetchApi(`/tasks/${id}`),
 
-    create: (title) => fetchApi('/todos', {
+    create: (title) => fetchApi('/tasks', {
       method: 'POST',
       body: JSON.stringify({ title }),
     }),
 
-    update: (id, updates) => fetchApi(`/todos/${id}`, {
+    update: (id, updates) => fetchApi(`/tasks/${id}`, {
       method: 'PUT',
       body: JSON.stringify(updates),
     }),
 
-    delete: (id) => fetchApi(`/todos/${id}`, {
+    delete: (id) => fetchApi(`/tasks/${id}`, {
       method: 'DELETE',
     }),
+  },
+  statuses: {
+    getAll: () => fetchApi('/tasks/status'),
   },
 };

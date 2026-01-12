@@ -6,18 +6,23 @@ import styles from './App.module.css';
 
 function App() {
     const [todos, setTodos] = useState([]);
+    const [statuses, setStatuses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        loadTodos();
+        loadData();
     }, []);
 
-    const loadTodos = async () => {
+    const loadData = async () => {
         try {
             setLoading(true);
-            const data = await api.todos.getAll();
-            setTodos(data);
+            const [todosData, statusesData] = await Promise.all([
+                api.todos.getAll(),
+                api.statuses.getAll()
+            ]);
+            setTodos(todosData);
+            setStatuses(statusesData);
             setError(null);
         } catch (err) {
             setError(err.message);
@@ -74,6 +79,7 @@ function App() {
                 ) : (
                     <TodoList
                         todos={todos}
+                        statuses={statuses}
                         onStatusChange={handleStatusChange}
                         onDelete={handleDelete}
                     />
