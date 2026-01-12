@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "openspec": "^0.0.0"
   }
 }
