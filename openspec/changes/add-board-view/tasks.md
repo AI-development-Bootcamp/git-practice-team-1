@@ -33,10 +33,10 @@
 - [x] 5.5 Connect to API service
 
 ## 6. Navigation and View Switching
-- [ ] 6.1 Add navigation component to switch between views (with CSS module)
-- [ ] 6.2 Update App.jsx to support view routing/switching
-- [ ] 6.3 Preserve selected view in component state
-- [ ] 6.4 Add visual indicator for active view
+- [x] 6.1 Add navigation component to switch between views (with CSS module)
+- [x] 6.2 Update App.jsx to support view routing/switching
+- [x] 6.3 Preserve selected view in component state
+- [x] 6.4 Add visual indicator for active view
 
 ## 7. Polish and Validation
 - [ ] 7.1 Test drag-and-drop in different browsers
