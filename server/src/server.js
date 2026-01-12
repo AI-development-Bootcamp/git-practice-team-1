@@ -1,7 +1,6 @@
 import Fastify from 'fastify';
 import cors from '@fastify/cors';
 import todosRoutes from './routes/todos.js';
-import statusRoutes from './routes/status.js';
 
 const fastify = Fastify({ logger: true });
 
@@ -9,8 +8,7 @@ await fastify.register(cors, {
   origin: 'http://localhost:5173'
 });
 
-await fastify.register(todosRoutes, { prefix: '/api/todos' });
-await fastify.register(statusRoutes, { prefix: '/api/status' });
+await fastify.register(todosRoutes, { prefix: '/api/tasks' });
 
 const start = async () => {
   try {
