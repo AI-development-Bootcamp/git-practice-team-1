@@ -59,7 +59,7 @@ describe('DELETE /api/todos/:id', () => {
     expect(response.statusCode).toBe(404);
     const error = JSON.parse(response.payload);
     expect(error).toHaveProperty('error');
-    expect(error.error).toBe('Todo not found');
+    expect(error.error).toBe('Task not found');
   });
 
   it('should return 404 when deleting the same todo twice', async () => {
@@ -75,7 +75,7 @@ describe('DELETE /api/todos/:id', () => {
 
     expect(response.statusCode).toBe(404);
     const error = JSON.parse(response.payload);
-    expect(error.error).toBe('Todo not found');
+    expect(error.error).toBe('Task not found');
   });
 
   it('should delete all todos independently', async () => {
@@ -110,7 +110,7 @@ describe('DELETE /api/todos/:id', () => {
 
     expect(response.statusCode).toBe(404);
     const error = JSON.parse(response.payload);
-    expect(error.error).toBe('Todo not found');
+    expect(error.error).toBe('Task not found');
   });
 
   it('should not affect other operations after deletion', async () => {

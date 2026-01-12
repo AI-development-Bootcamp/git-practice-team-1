@@ -63,7 +63,7 @@ describe('GET /api/todos/:id', () => {
     expect(response.statusCode).toBe(404);
     const error = JSON.parse(response.payload);
     expect(error).toHaveProperty('error');
-    expect(error.error).toBe('Todo not found');
+    expect(error.error).toBe('Task not found');
   });
 
   it('should return 404 for invalid UUID', async () => {
@@ -74,7 +74,7 @@ describe('GET /api/todos/:id', () => {
 
     expect(response.statusCode).toBe(404);
     const error = JSON.parse(response.payload);
-    expect(error.error).toBe('Todo not found');
+    expect(error.error).toBe('Task not found');
   });
 
   it('should return all fields of the todo', async () => {

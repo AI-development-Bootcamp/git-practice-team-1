@@ -1,8 +1,9 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 import styles from './TodoList.module.css';
+import { buildStatusConfig } from '../utils/statusConfig';
 
-function TodoList({ todos, onToggle, onDelete, onPriorityChange }) {
+function TodoList({ todos, statuses, onStatusChange, onDelete, onPriorityChange }) {
   if (todos.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -11,40 +12,34 @@ function TodoList({ todos, onToggle, onDelete, onPriorityChange }) {
     );
   }
 
-  const pendingTodos = todos.filter(t => t.status === 'todo');
-  const doneTodos = todos.filter(t => t.status === 'done');
+  const statusConfig = buildStatusConfig(statuses);
 
   return (
     <div className={styles.todoList}>
-      {pendingTodos.length > 0 && (
-        <section className={styles.todoSection}>
-          <h2>To Do ({pendingTodos.length})</h2>
-          {pendingTodos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggle={onToggle}
-              onDelete={onDelete}
-              onPriorityChange={onPriorityChange}
-            />
-          ))}
-        </section>
-      )}
+      {statuses.map(status => {
+        const statusTodos = todos.filter(t => t.status === status);
+        if (statusTodos.length === 0) return null;
 
-      {doneTodos.length > 0 && (
-        <section className={styles.todoSection}>
-          <h2>Done ({doneTodos.length})</h2>
-          {doneTodos.map(todo => (
-            <TodoItem
-              key={todo.id}
-              todo={todo}
-              onToggle={onToggle}
-              onDelete={onDelete}
-              onPriorityChange={onPriorityChange}
-            />
-          ))}
-        </section>
-      )}
+        const config = statusConfig[status];
+
+        return (
+          <section key={status} className={styles.todoSection}>
+            <h2 style={{ color: config.color }}>
+              {config.label} ({statusTodos.length})
+            </h2>
+            {statusTodos.map(todo => (
+              <TodoItem
+                key={todo.id}
+                todo={todo}
+                statuses={statuses}
+                onStatusChange={onStatusChange}
+                onDelete={onDelete}
+                onPriorityChange={onPriorityChange}
+              />
+            ))}
+          </section>
+        );
+      })}
     </div>
   );
 }

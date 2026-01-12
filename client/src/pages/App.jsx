@@ -6,18 +6,23 @@ import styles from './App.module.css';
 
 function App() {
     const [todos, setTodos] = useState([]);
+    const [statuses, setStatuses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        loadTodos();
+        loadData();
     }, []);
 
-    const loadTodos = async () => {
+    const loadData = async () => {
         try {
             setLoading(true);
-            const data = await api.todos.getAll();
-            setTodos(data);
+            const [todosData, statusesData] = await Promise.all([
+                api.todos.getAll(),
+                api.statuses.getAll()
+            ]);
+            setTodos(todosData);
+            setStatuses(statusesData);
             setError(null);
         } catch (err) {
             setError(err.message);
@@ -35,10 +40,8 @@ function App() {
         }
     };
 
-    const handleToggle = async (id) => {
+    const handleStatusChange = async (id, newStatus) => {
         try {
-            const todo = todos.find(t => t.id === id);
-            const newStatus = todo.status === 'done' ? 'todo' : 'done';
             const updated = await api.todos.update(id, { status: newStatus });
             setTodos(todos.map(t => t.id === id ? updated : t));
         } catch (err) {
@@ -85,7 +88,8 @@ function App() {
                 ) : (
                     <TodoList
                         todos={todos}
-                        onToggle={handleToggle}
+                        statuses={statuses}
+                        onStatusChange={handleStatusChange}
                         onDelete={handleDelete}
                         onPriorityChange={handlePriorityChange}
                     />

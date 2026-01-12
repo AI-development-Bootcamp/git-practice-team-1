@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { DEFAULT_STATUS } from '../constants/statuses.js';
 import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -41,10 +42,6 @@ export const todoService = {
       filtered = filtered.filter(todo => todo.priority === filters.priority);
     }
 
-    if (filters.theme) {
-      filtered = filtered.filter(todo => todo.theme === filters.theme);
-    }
-
     if (filters.search) {
       const searchLower = filters.search.toLowerCase();
       filtered = filtered.filter(todo =>
@@ -68,9 +65,8 @@ export const todoService = {
       id: crypto.randomUUID(),
       title: todoData.title,
       description: todoData.description,
-      status: todoData.status || 'todo',
+      status: todoData.status || DEFAULT_STATUS,
       priority: todoData.priority || 'medium',
-      theme: todoData.theme || 'other',
       dueDate: todoData.dueDate || null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()

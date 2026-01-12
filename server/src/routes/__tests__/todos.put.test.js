@@ -54,8 +54,7 @@ describe('PUT /api/todos/:id', () => {
         title: 'Completely Updated',
         description: 'New description',
         status: 'done',
-        priority: 'high',
-        theme: 'work'
+        priority: 'high'
       }
     });
 
@@ -65,7 +64,6 @@ describe('PUT /api/todos/:id', () => {
     expect(todo.description).toBe('New description');
     expect(todo.status).toBe('done');
     expect(todo.priority).toBe('high');
-    expect(todo.theme).toBe('work');
   });
 
   it('should update the updatedAt timestamp', async () => {
@@ -132,7 +130,7 @@ describe('PUT /api/todos/:id', () => {
     expect(response.statusCode).toBe(404);
     const error = JSON.parse(response.payload);
     expect(error).toHaveProperty('error');
-    expect(error.error).toBe('Todo not found');
+    expect(error.error).toBe('Task not found');
   });
 
   it('should return 400 for invalid status', async () => {

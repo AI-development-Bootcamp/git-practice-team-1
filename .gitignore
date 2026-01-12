@@ -5,3 +5,4 @@ dist/
 *.log
 .vite/
 lior_rules.md
+server/src/data/todos.json
