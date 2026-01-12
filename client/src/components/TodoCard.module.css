@@ -1,0 +1,86 @@
+/* === TODO CARD (BOARD) === */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s, transform 0.2s;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Status backgrounds */
+.statusTodo {
+  background: #f8fafc; /* slate-50 */
+}
+
+.statusInProgress {
+  background: #eff6ff; /* blue-50 */
+}
+
+.statusReview {
+  background: #fffbeb; /* amber-50 */
+}
+
+.statusDone {
+  background: #f0fdf4; /* green-50 */
+}
+
+.card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.dragging {
+  opacity: 0.55;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.done {
+  opacity: 0.7;
+}
+
+.done .title {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  display: block;
+  font-size: 15px;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.deleteBtn {
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  flex-shrink: 0;
+}
+
+.card:hover .deleteBtn {
+  opacity: 1;
+}
+
+.deleteBtn:hover {
+  transform: scale(1.1);
+}
+
