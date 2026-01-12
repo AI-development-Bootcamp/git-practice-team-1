@@ -10,7 +10,7 @@ The Board component SHALL display todos organized in columns by status.
 
 #### Scenario: Column creation
 - **WHEN** board is rendered
-- **THEN** one column is created for each unique status ('To Do' and 'Done')
+- **THEN** one column is created for each status returned by the statuses endpoint (default: 'todo', 'in-progress', 'review', 'done')
 
 #### Scenario: Empty board
 - **WHEN** no todos exist

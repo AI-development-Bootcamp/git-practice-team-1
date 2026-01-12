@@ -7,7 +7,7 @@
 - [x] 1.3 Install @dnd-kit dependencies (core and sortable)
 
 ## 2. Core Components
-- [ ] 2.1 Create TodoCard component with CSS module (TodoCard.module.css)
+- [x] 2.1 Create TodoCard component with CSS module (TodoCard.module.css)
 - [ ] 2.2 Create BoardColumn component with CSS module (BoardColumn.module.css)
 - [ ] 2.3 Create Board component with CSS module (Board.module.css)
 - [ ] 2.4 Ensure all components follow existing CSS module patterns

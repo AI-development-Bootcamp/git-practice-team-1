@@ -26,11 +26,11 @@ The API SHALL provide an endpoint to retrieve the list of available todo statuse
 
 #### Scenario: Get all statuses
 - **WHEN** GET /api/todos/statuses is called
-- **THEN** array of unique status names is returned (e.g., ["todo", "done"])
+- **THEN** array of unique status names is returned (e.g., ["todo", "in-progress", "review", "done"])
 
 #### Scenario: Empty todos list
 - **WHEN** GET /api/todos/statuses is called and no todos exist
-- **THEN** default statuses array is returned (["todo", "done"])
+- **THEN** default statuses array is returned (["todo", "in-progress", "review", "done"])
 
 #### Scenario: Dynamic statuses
 - **WHEN** GET /api/todos/statuses is called

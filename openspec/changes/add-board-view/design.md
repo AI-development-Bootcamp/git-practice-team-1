@@ -72,7 +72,7 @@ This change assumes the backend provides:
 - `App.jsx` continues to load todos once on mount (current pattern).
 - `BoardView.jsx` loads statuses on mount:
   - `api.todos.getStatuses()`
-  - Fallback to `['todo', 'done']` if request fails.
+  - Fallback to `['todo', 'in-progress', 'review', 'done']` if request fails.
 
 ### Updates (Move Card)
 - Board drag-and-drop emits `(todoId, nextStatus)`.
