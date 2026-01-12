@@ -26,11 +26,11 @@
 - [x] 4.6 Style drag states with CSS modules
 
 ## 5. Board View Page
-- [ ] 5.1 Create BoardView page component with CSS module (BoardView.module.css)
-- [ ] 5.2 Fetch statuses from API on mount
-- [ ] 5.3 Integrate Board component with data management
-- [ ] 5.4 Add loading and error states
-- [ ] 5.5 Connect to API service
+- [x] 5.1 Create BoardView page component with CSS module (BoardView.module.css)
+- [x] 5.2 Fetch statuses from API on mount
+- [x] 5.3 Integrate Board component with data management
+- [x] 5.4 Add loading and error states
+- [x] 5.5 Connect to API service
 
 ## 6. Navigation and View Switching
 - [ ] 6.1 Add navigation component to switch between views (with CSS module)
