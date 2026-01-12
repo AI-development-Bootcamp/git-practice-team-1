@@ -4,26 +4,13 @@ import { z } from 'zod';
  * Todo Status Enum
  * Represents the three possible states of a todo item
  */
-export const TodoStatusEnum = z.enum(['todo', 'in-progress', 'done']);
+export const TodoStatusEnum = z.enum(['todo', 'in-progress', 'review', 'done']);
 
 /**
  * Todo Priority Enum
  * Represents the priority level of a todo item
  */
-export const TodoPriorityEnum = z.enum(['low', 'medium', 'high', 'urgent']);
-
-/**
- * Todo Theme/Category Enum
- * Represents different themes or categories for organizing todos
- */
-export const TodoThemeEnum = z.enum([
-  'work',
-  'personal',
-  'shopping',
-  'health',
-  'study',
-  'other'
-]);
+export const TodoPriorityEnum = z.enum(['low', 'medium', 'high']);
 
 /**
  * Base Todo Schema
@@ -39,7 +26,6 @@ export const BaseTodoSchema = z.object({
     .optional(),
   status: TodoStatusEnum.default('todo'),
   priority: TodoPriorityEnum.default('medium'),
-  theme: TodoThemeEnum.default('other'),
   dueDate: z.string().datetime().nullable().optional(),
   createdAt: z.string().datetime(),
   updatedAt: z.string().datetime(),
@@ -58,7 +44,6 @@ export const CreateTodoSchema = z.object({
     .optional(),
   status: TodoStatusEnum.optional().default('todo'),
   priority: TodoPriorityEnum.optional().default('medium'),
-  theme: TodoThemeEnum.optional().default('other'),
   dueDate: z.string().datetime().nullable().optional(),
 });
 
@@ -67,7 +52,7 @@ export const CreateTodoSchema = z.object({
  * Used when updating an existing todo (all fields optional except id)
  */
 export const UpdateTodoSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string(),  // Changed from .uuid() to accept simple string IDs
   title: z.string()
     .min(1, 'Title is required')
     .max(200, 'Title must be less than 200 characters')
@@ -77,7 +62,6 @@ export const UpdateTodoSchema = z.object({
     .optional(),
   status: TodoStatusEnum.optional(),
   priority: TodoPriorityEnum.optional(),
-  theme: TodoThemeEnum.optional(),
   dueDate: z.string().datetime().nullable().optional(),
 });
 
@@ -101,15 +85,15 @@ export const DeleteTodoSchema = z.object({
 /**
  * Filter Todos DTO Schema
  * Used for filtering and searching todos
+ * All fields are optional - empty query returns all todos
  */
 export const FilterTodosSchema = z.object({
   status: TodoStatusEnum.optional(),
   priority: TodoPriorityEnum.optional(),
-  theme: TodoThemeEnum.optional(),
   search: z.string().optional(),
   dueDateFrom: z.string().datetime().optional(),
   dueDateTo: z.string().datetime().optional(),
-});
+}).passthrough(); // Allow extra fields to be ignored
 
 /**
  * Sort Todos DTO Schema

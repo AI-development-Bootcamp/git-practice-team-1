@@ -1,5 +1,7 @@
 import { todoService } from '../services/todoService.js';
 import { VALID_STATUSES } from '../constants/statuses.js';
+import { CreateTodoSchema, UpdateTodoSchema, FilterTodosSchema } from '../../../shared/types/todo.dto.js';
+import { validateData } from '../../../shared/types/validation.js';
 
 export default async function todosRoutes(fastify, options) {
 
@@ -8,9 +10,24 @@ export default async function todosRoutes(fastify, options) {
     return VALID_STATUSES;
   });
 
-  // GET /api/tasks - Get all tasks
+  // GET /api/tasks - Get all tasks with optional filters
   fastify.get('/', async (request, reply) => {
-    return todoService.getAll();
+    // If no query params, return all todos without validation
+    if (!request.query || Object.keys(request.query).length === 0) {
+      const todos = todoService.getAll({});
+      return todos;
+    }
+
+    // Validate query params if provided
+    const validation = validateData(FilterTodosSchema, request.query);
+
+    if (!validation.success) {
+      return reply.status(400).send({ error: validation.errors[0].message });
+    }
+
+    // Use validated data for filtering
+    const todos = todoService.getAll(validation.data || {});
+    return todos;
   });
 
   // GET /api/tasks/:id - Get single task
@@ -24,17 +41,28 @@ export default async function todosRoutes(fastify, options) {
 
   // POST /api/tasks - Create new task
   fastify.post('/', async (request, reply) => {
-    const { title } = request.body;
-    if (!title || !title.trim()) {
-      return reply.status(400).send({ error: 'Title is required' });
+    const validation = validateData(CreateTodoSchema, request.body);
+
+    if (!validation.success) {
+      return reply.status(400).send({ error: validation.errors[0].message });
     }
-    const todo = todoService.create({ title: title.trim() });
+
+    const todo = todoService.create(validation.data);
     return reply.status(201).send(todo);
   });
 
   // PUT /api/tasks/:id - Update task
   fastify.put('/:id', async (request, reply) => {
-    const todo = todoService.update(request.params.id, request.body);
+    // Don't include id in validation - it comes from params
+    // Create a schema without id requirement for update body
+    const updateBodySchema = UpdateTodoSchema.omit({ id: true });
+    const validation = validateData(updateBodySchema, request.body);
+
+    if (!validation.success) {
+      return reply.status(400).send({ error: validation.errors[0].message });
+    }
+
+    const todo = todoService.update(request.params.id, validation.data);
     if (!todo) {
       return reply.status(404).send({ error: 'Task not found' });
     }

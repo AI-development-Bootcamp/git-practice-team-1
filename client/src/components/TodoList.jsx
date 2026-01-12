@@ -3,7 +3,7 @@ import TodoItem from './TodoItem';
 import styles from './TodoList.module.css';
 import { buildStatusConfig } from '../utils/statusConfig';
 
-function TodoList({ todos, statuses, onStatusChange, onDelete }) {
+function TodoList({ todos, statuses, onStatusChange, onDelete, onPriorityChange }) {
   if (todos.length === 0) {
     return (
       <div className={styles.emptyState}>
@@ -34,6 +34,7 @@ function TodoList({ todos, statuses, onStatusChange, onDelete }) {
                 statuses={statuses}
                 onStatusChange={onStatusChange}
                 onDelete={onDelete}
+                onPriorityChange={onPriorityChange}
               />
             ))}
           </section>
